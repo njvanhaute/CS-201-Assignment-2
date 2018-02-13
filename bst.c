@@ -141,27 +141,12 @@ BSTNODE *swapToLeafBST(BST *t, BSTNODE *node) {
     BSTNODE *x = node;
     while (!isLeaf(x)) {
         BSTNODE *pre = predecessor(x);
-/*        printf("Pre(");
-        t->display(stdout, x->value);
-        printf(") = ");
-        if (pre != NULL) {
-            t->display(stdout, pre->value);
-        }        
-        else {
-            printf("NULL");
-        }
-        printf("\n");*/
         if (pre != NULL) {
             t->swap(pre, x);
             x = pre;
         }
         else {
             BSTNODE *suc = successor(x);
-           /* printf("Suc(");
-            t->display(stdout, x->value);
-            printf(") = ");
-            t->display(stdout, suc->value);
-            printf("\n");*/
             t->swap(suc, x);
             x = suc;
         }
@@ -270,21 +255,7 @@ static BSTNODE *successor(BSTNODE *n) {
     if (x->right != NULL) {
         return treeMin(x->right);
     }
-    return NULL;
-    /*BSTNODE *y = x->parent;
-    if (y == x) {
-        y = NULL;
-    }
-    while (y != NULL && x == y->right) {
-        x = y;
-        if (isRoot(y)) {
-            y = NULL;
-        }
-        else {   
-            y = y->parent;
-        }
-    }
-    return y;*/
+    return NULL; 
 }
 
 static BSTNODE *predecessor(BSTNODE *n) {
@@ -292,20 +263,7 @@ static BSTNODE *predecessor(BSTNODE *n) {
     if (x->left != NULL) {
         return treeMax(x->left);
     }
-    return NULL; 
-    /*if (isRoot(x)) {
-        y = NULL;
-    }
-    while (y != NULL && x == y->left) {
-        x = y;
-        if (isRoot(y)) {
-            y = NULL;
-        }
-        else {
-            y = y->parent;
-        }
-    }
-    return y; */
+    return NULL;
 }
 
 static int minDepth(BSTNODE *root) {
